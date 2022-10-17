@@ -8,8 +8,8 @@ type Props = {
 
 export default function Input({ updateFunction, labelText, buttonText }: Props) {
   
-  const expenseInfoRef = useRef<HTMLInputElement | null>(null);
-  const expenseAmountRef = useRef<HTMLInputElement | null>(null);
+  const descriptionRef = useRef<HTMLInputElement | null>(null);
+  const amountRef = useRef<HTMLInputElement | null>(null);
 
 
   function handleUpdateInfo() {
@@ -17,10 +17,13 @@ export default function Input({ updateFunction, labelText, buttonText }: Props) 
      * Calls the update function and passes in the infoRef as a string.
      * Clears the inputRef when finished.
      */
-    const info: string | undefined = (expenseInfoRef.current?.value !== null) ? expenseInfoRef.current?.value : '' ;
-    if (info === '') return;
-    updateFunction(info);
-    expenseInfoRef.current!.value = null!;
+    const description: string | undefined = (descriptionRef.current?.value !== null) ? descriptionRef.current?.value : '' ;
+    if (description === '') return;
+    const amount: string | undefined = (amountRef.current?.value !== null) ? amountRef.current?.value : '' ;
+    if (amount === '') return;
+    updateFunction({ description: description, amount: amount });
+    descriptionRef.current!.value = null!;
+    amountRef.current!.value = null!;
   }
 
   function handleKeyPress(event: React.KeyboardEvent<HTMLElement>) {
@@ -36,8 +39,8 @@ export default function Input({ updateFunction, labelText, buttonText }: Props) 
   return (
     <div>
       <label>{labelText}</label>
-      <input ref={expenseInfoRef} onKeyUp={handleKeyPress} type='text' placeholder={'Description'} />
-      <input ref={expenseAmountRef} onKeyUp={handleKeyPress} type='text' placeholder={'Amount'} />
+      <input ref={descriptionRef} onKeyUp={handleKeyPress} type='text' placeholder={'Description'} />
+      <input ref={amountRef} onKeyUp={handleKeyPress} type='text' placeholder={'Amount'} />
       <button onClick={handleUpdateInfo}>{buttonText}</button>
     </div>
   )
