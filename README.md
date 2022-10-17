@@ -1,2 +1,4 @@
-# react-budget-calc
-Budget calculator written with React and Typescript
+# React Budget Calculator
+
+Budget calculator written with React and Typescript.
+
