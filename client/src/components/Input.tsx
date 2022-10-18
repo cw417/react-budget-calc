@@ -1,7 +1,8 @@
 import React, { useRef } from 'react'
+import { Expense } from './ExpenseList';
 
 type Props = {
-  updateFunction: Function;
+  updateFunction: (expense: Expense) => void;
   labelText?: string;
   buttonText: string | JSX.Element;
 }
@@ -21,7 +22,7 @@ export default function Input({ updateFunction, labelText, buttonText }: Props) 
     if (description === '') return;
     const amount: string | undefined = (amountRef.current?.value !== null) ? amountRef.current?.value : '' ;
     if (amount === '') return;
-    updateFunction({ description: description, amount: amount });
+    updateFunction({ description: description as string, amount: parseFloat(amount as string)});
     descriptionRef.current!.value = null!;
     amountRef.current!.value = null!;
   }
