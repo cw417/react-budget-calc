@@ -6,7 +6,7 @@ export interface Expense {
 }
 
 type Props = {
-  expenses: Array<Expense>
+  expenses: Expense[]
 }
 
 export default function ExpenseList({ expenses }: Props) {

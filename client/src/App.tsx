@@ -9,7 +9,7 @@ const APP_TITLE = 'Budget Calculator'
 
 function App() {
 
-  const [ expenses, setExpenses ] = useState<Array<Expense>>([]);
+  const [ expenses, setExpenses ] = useState<Expense[]>([]);
 
   function addExpense(expense: Expense) {
     setExpenses(prevExpenses => [...prevExpenses, expense])
