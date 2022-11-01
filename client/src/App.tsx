@@ -72,6 +72,7 @@ function App() {
       />
       <InfoDisplay
         balance={getBalance()}
+        income={income}
       />
     </div>
   );
