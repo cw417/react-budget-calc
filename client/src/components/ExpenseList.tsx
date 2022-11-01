@@ -21,6 +21,8 @@ export default function ExpenseList({ expenses }: Props) {
   }
 
   return (
-    <div>{renderExpenseList()}</div>
+    <div className="container">
+      <div>{renderExpenseList()}</div>
+    </div>
   )
 }

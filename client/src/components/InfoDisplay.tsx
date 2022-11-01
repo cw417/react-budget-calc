@@ -6,7 +6,7 @@ type Props = {
 
 export default function InfoDisplay({ balance }: Props) {
   return (
-    <div>
+    <div className='container'>
       <div>
         {balance}
       </div>

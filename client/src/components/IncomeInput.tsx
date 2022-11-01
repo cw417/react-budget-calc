@@ -18,10 +18,9 @@ export default function IncomeInput({ income, updateIncome }: Props) {
   }
 
   return (
-    <div>
-      <div>{income}</div>
-      <input type='text' ref={incomeRef}></input>
-      <button onClick={handleUpdateIncome}><FiPlus /></button>
+    <div className='m-2' >
+      <input className='input' type='text' ref={incomeRef}></input>
+      <button className='button' onClick={handleUpdateIncome}><FiPlus /></button>
     </div>
   )
 }

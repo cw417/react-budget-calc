@@ -37,11 +37,11 @@ export default function Input({ updateFunction, labelText, buttonText }: Props) 
   }
 
   return (
-    <div>
+    <div className='m-2'>
       <label>{labelText}</label>
-      <input ref={descriptionRef} onKeyUp={handleKeyPress} type='text' placeholder={'Description'} />
-      <input ref={amountRef} onKeyUp={handleKeyPress} type='text' placeholder={'Amount'} />
-      <button onClick={handleUpdateInfo}>{buttonText}</button>
+      <input className='input' ref={descriptionRef} onKeyUp={handleKeyPress} type='text' placeholder={'Description'} />
+      <input className='input' ref={amountRef} onKeyUp={handleKeyPress} type='text' placeholder={'Amount'} />
+      <button className='button' onClick={handleUpdateInfo}>{buttonText}</button>
     </div>
   )
 }
