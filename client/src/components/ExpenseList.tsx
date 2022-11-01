@@ -1,9 +1,5 @@
 import React from 'react'
-
-export interface Expense {
-  description: string;
-  amount: number
-}
+import { Expense } from '../App';
 
 type Props = {
   expenses: Expense[]
