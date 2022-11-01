@@ -16,7 +16,8 @@ const APP_TITLE = 'Budget Calculator'
 
 function initialExpenses() {
   /**
-   * Returns
+   * Returns array of expenses to initialize the 'expenses' state.
+   * @return {Expnses[]}    Expense array.
    */
   const initialExpense: Expense = { description: "Initial", amount: 0 }
   return [initialExpense]
@@ -28,14 +29,27 @@ function App() {
   const [ income, setIncome ] = useState(0);
 
   function addExpense(expense: Expense) {
+    /**
+     * Add expense to the 'expenses' array.
+     * @param {Expense} expense    Expense to add.
+     */
     setExpenses(prevExpenses => [...prevExpenses, expense])
   }
 
   function updateIncome(amount: number) {
+    /**
+     * Sets 'income' state to given amount.
+     * @param {number} amount    Amount to set income to.
+     */
     setIncome(amount);
   }
 
   function getBalance() {
+    /**
+     * Gets the current available balance.
+     * Balance is: income - total cost of expenses.
+     * @return {number}    Available balance.
+     */
      return income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b);
   }
 
