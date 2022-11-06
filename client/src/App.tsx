@@ -88,6 +88,14 @@ function App() {
     setExpenses(newExpenses);
   }
 
+  function deleteExpense(id: string) {
+    /**
+     * Delete an expense from the expenses array based on UUID.
+     * @param {string} id    UUID of the expense to delete.
+     */
+    setExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
+  }
+
   return (
     <div>
       <Header
@@ -113,6 +121,7 @@ function App() {
       <ExpenseList
         expenses={expenses}
         updateExpense={updateExpense}
+        deleteExpense={deleteExpense}
       />
     </div>
   );

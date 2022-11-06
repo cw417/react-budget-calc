@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect, Dispatch, SetStateAction } from 'react'
 import { Expense } from '../App';
-import { FiCheck } from 'react-icons/fi';
+import { FiCheck, FiTrash } from 'react-icons/fi';
 
 type Props = {
   expense: Expense;
   updateExpense: Function;
+  deleteExpense: Function;
 }
 
-export default function ExpenseItem({ expense, updateExpense }: Props) {
+export default function ExpenseItem({ expense, updateExpense, deleteExpense }: Props) {
 
   const [editing, setEditing]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const descriptionRef = useRef<HTMLInputElement | null>(null);
@@ -28,10 +29,20 @@ export default function ExpenseItem({ expense, updateExpense }: Props) {
   }, [editing, expense.description, expense.amount])
 
   function handleUpdateExpense() {
+    /**
+     * Update the current expense if editing is 'true'.
+     */
     const description = descriptionRef.current!.value;
     const amount = amountRef.current!.value;
     if (editing) updateExpense(expense.id, description, amount);
     toggleEditing();
+  }
+
+  function handleDeleteExpense() {
+    /**
+     * Delete the current expense.
+     */
+    deleteExpense(expense.id);
   }
 
   return (
@@ -39,11 +50,11 @@ export default function ExpenseItem({ expense, updateExpense }: Props) {
       <div className='expense' style={{display: editing ? 'none' : 'flex'}}>
         <span 
           className='expense-description'
-          onClick={handleUpdateExpense}
+          onClick={toggleEditing}
         >{expense.description}</span>
         <span 
           className='expense-amount'
-          onClick={handleUpdateExpense}
+          onClick={toggleEditing}
         >${expense.amount}</span>
       </div>
       <div className='expense--editing' style={{display: editing ? 'flex' : 'none'}}>
@@ -56,12 +67,17 @@ export default function ExpenseItem({ expense, updateExpense }: Props) {
           ref={amountRef}
         />
       </div>
-      <span className='expense-edit'>
+      <span className='expense-edit flex-row'>
         <button
           className={`button expense-edit--button ${editing ? 'ml-1' : '' }`}
           style={{opacity: editing ? '1' : '0'}}
           onClick={handleUpdateExpense}
         ><FiCheck /></button>
+        <button
+          className={`button expense-edit--button ${editing ? 'ml-1' : '' }`}
+          style={{opacity: editing ? '1' : '0'}}
+          onClick={handleDeleteExpense}
+        ><FiTrash /></button>
       </span>
     </div>
   )

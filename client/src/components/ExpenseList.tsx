@@ -4,9 +4,10 @@ import ExpenseItem from './ExpenseItem';
 type Props = {
   expenses: Expense[];
   updateExpense: Function;
+  deleteExpense: Function;
 }
 
-export default function ExpenseList({ expenses, updateExpense }: Props) {
+export default function ExpenseList({ expenses, updateExpense, deleteExpense }: Props) {
 
   function renderExpenseList() {
     return (
@@ -16,6 +17,7 @@ export default function ExpenseList({ expenses, updateExpense }: Props) {
             key={expense.id}
             expense={expense}
             updateExpense={updateExpense}
+            deleteExpense={deleteExpense}
           />
         )
       })
