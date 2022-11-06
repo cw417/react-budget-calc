@@ -7,14 +7,14 @@ type Props = {
 
 export default function InfoDisplay({ balance, income}: Props) {
   return (
-    <div className='container'>
-      <div>
-        <label>Income:</label>
-        <span>{income}</span>
-      </div>
+    <div className='info-display container'>
       <div>
         <label>Balance:</label>
-        <span>{balance}</span>
+        <span>{` $${balance}`}</span>
+      </div>
+      <div className='info-display--income'>
+        <label>Income:</label>
+        <span>{` $${income}`}</span>
       </div>
     </div>
   )
