@@ -1,15 +1,18 @@
 import React, { useRef } from 'react'
 
 type Props = {
+  numberOfInputs: 1 | 2;
   updateFunction: Function;
   labelText?: string;
   buttonText: string | JSX.Element;
+  placeholder1: string;
+  placeholder2?: string;
 }
 
-export default function Input({ updateFunction, labelText, buttonText }: Props) {
+export default function BudgetInput( props : Props ) {
   
-  const descriptionRef = useRef<HTMLInputElement | null>(null);
-  const amountRef = useRef<HTMLInputElement | null>(null);
+  const input1Ref = useRef<HTMLInputElement | null>(null);
+  const input2Ref = useRef<HTMLInputElement | null>(null);
 
 
   function handleUpdateInfo() {
@@ -17,13 +20,18 @@ export default function Input({ updateFunction, labelText, buttonText }: Props) 
      * Calls the update function and passes in the infoRef as a string.
      * Clears the inputRef when finished.
      */
-    const description: string | undefined = (descriptionRef.current?.value !== null) ? descriptionRef.current?.value : '' ;
-    if (description === '') return;
-    const amount: string | undefined = (amountRef.current?.value !== null) ? amountRef.current?.value : '' ;
-    if (amount === '') return;
-    updateFunction({ description: description, amount: parseFloat(amount!)});
-    descriptionRef.current!.value = null!;
-    amountRef.current!.value = null!;
+    const input1: string | undefined = (input1Ref.current?.value !== null) ? input1Ref.current?.value : '' ;
+    if (input1 === '') return;
+    if (props.numberOfInputs === 1) {
+      props.updateFunction(input1);
+    }
+    else {
+      const input2: string | undefined = (input2Ref.current?.value !== null) ? input2Ref.current?.value : '' ;
+      if (input2 === '') return;
+      props.updateFunction(input1, input2);
+    }
+    input1Ref.current!.value = null!;
+    input2Ref.current!.value = null!;
   }
 
   function handleKeyPress(event: React.KeyboardEvent<HTMLElement>) {
@@ -38,10 +46,26 @@ export default function Input({ updateFunction, labelText, buttonText }: Props) 
 
   return (
     <div className='m-2'>
-      <label>{labelText}</label>
-      <input className='input' ref={descriptionRef} onKeyUp={handleKeyPress} type='text' placeholder={'Description'} />
-      <input className='input' ref={amountRef} onKeyUp={handleKeyPress} type='text' placeholder={'Amount'} />
-      <button className='button' onClick={handleUpdateInfo}>{buttonText}</button>
+      <label>{props.labelText}</label>
+      <input 
+        className='input'
+        ref={input1Ref}
+        type='text'
+        placeholder={props.placeholder1}
+        onKeyUp={handleKeyPress}
+      />
+      <input
+        className='input'
+        ref={input2Ref}
+        type='text'
+        placeholder={props.placeholder2}
+        onKeyUp={handleKeyPress}
+        style={{display: props.numberOfInputs === 1 ? 'none' : 'inline' }}
+      />
+      <button
+        className='button'
+        onClick={handleUpdateInfo}
+      >{props.buttonText}</button>
     </div>
   )
 }

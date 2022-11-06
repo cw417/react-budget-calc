@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import Input from './components/Input';
 import ExpenseList from './components/ExpenseList';
-import IncomeInput from './components/IncomeInput';
 import { FiPlus } from 'react-icons/fi';
 import InfoDisplay from './components/InfoDisplay';
+import Input from './components/Input'
 
 export interface Expense {
   description: string;
@@ -28,20 +27,23 @@ function App() {
   const [ expenses, setExpenses ] = useState<Expense[]>(initialExpenses());
   const [ income, setIncome ] = useState(0);
 
-  function addExpense(expense: Expense) {
+  function addExpense(description: string, amount: string) {
     /**
      * Add expense to the 'expenses' array.
-     * @param {Expense} expense    Expense to add.
+     * @param {string} description    Description of the expense.
+     * @param {string} amount         Amount of the expense.
      */
-    setExpenses(prevExpenses => [...prevExpenses, expense])
+    const newExpense: Expense =  { description: description, amount: parseFloat(amount)}
+    setExpenses(prevExpenses => [...prevExpenses, newExpense])
   }
 
-  function updateIncome(amount: number) {
+  function updateIncome(amount: string) {
     /**
      * Sets 'income' state to given amount.
-     * @param {number} amount    Amount to set income to.
+     * @param {string} amount    Amount to set income to.
      */
-    setIncome(amount);
+
+    setIncome(parseFloat(amount));
   }
 
   function getBalance() {
@@ -53,19 +55,23 @@ function App() {
      return income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b);
   }
 
-
   return (
     <div>
       <Header
         title={APP_TITLE}
       />
-      <IncomeInput 
-        income={income}
-        updateIncome={updateIncome}
-      />
-      <Input 
-        updateFunction={addExpense}
+      <Input
+        numberOfInputs={1}
         buttonText={<FiPlus />}
+        placeholder1={"Income"}
+        updateFunction={updateIncome}
+      />
+      <Input
+        numberOfInputs={2}
+        buttonText={<FiPlus />}
+        placeholder1={"Description"}
+        placeholder2={"Amount"}
+        updateFunction={addExpense}
       />
       <ExpenseList
         expenses={expenses}
