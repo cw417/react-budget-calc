@@ -2,32 +2,76 @@
   --button-blue: #3498db;
   --button-blue-hover: #2385C7;
   --main-font-color: #fff;
+  --background-color:#2385C7;
+  --background-color-secondary: #dfe6e9; 
+  --background-color-secondary-hover: #65b4fa;
+  --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 body {
   height: 100%;
   width: 100%;
-  background-color: grey;
+  background-color: var(--background-color);
 }
 
-/* Misc */
+/* Input */
+
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.input {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  border: none;
+}
 
 .button {
   width: 3rem;
   height: 2.25rem;
+  font-size: 1.25rem;
+  padding-top: 0.25rem; /* this keeps the image centered */
   cursor: pointer;
   border-radius: 7px;
   background-color: var(--button-blue);
   color: var(--main-font-color);
-  border: 1px solid #fff;
+  border: none;
 	transition: all 0.3s;
-  margin: 0 1rem;
+  margin-left: 1rem;
+  box-shadow: var(--shadow);
 }
 
 .button:hover {
   background-color: var(--button-blue-hover);
   border-radius: 0px;
 }
+
+/* Expense List */
+
+.expense {
+  background-image: url(../images/paper.png);
+  display: flex;
+  flex-direction: row;
+  margin: 1rem auto;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 80%;
+  font-size: 2rem;
+}
+
+.expense-info {
+  margin: 0 2rem;
+}
+
+.expense-buttons {
+  margin-left: auto;
+}
+
+/* Utility */
 
 .center {
   text-align: center;
@@ -36,7 +80,9 @@ body {
 .container {
   margin: 2rem;
   padding: 2rem;
-  border: 1px solid black;
+  box-shadow: var(--shadow);
+  background-color: var(--background-color-secondary);
+  border-radius: 15px;
 }
 
 .f-3 {
@@ -57,8 +103,10 @@ body {
   margin: 2rem;
 }
 
-.input {
-  padding: 0.5rem 1rem;
-  border-radius: 15px;
+.ml-1 {
+  margin-left: 1rem;
+}
 
+.white-text {
+  color: #fff;
 }

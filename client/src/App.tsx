@@ -73,12 +73,12 @@ function App() {
         placeholder2={"Amount"}
         updateFunction={addExpense}
       />
-      <ExpenseList
-        expenses={expenses}
-      />
       <InfoDisplay
         balance={getBalance()}
         income={income}
+      />
+      <ExpenseList
+        expenses={expenses}
       />
     </div>
   );

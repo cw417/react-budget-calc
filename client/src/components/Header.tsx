@@ -4,10 +4,10 @@ type Props = {
   title: string;
 }
 
-export default function Header({ title }: Props) {
+export default function Header(props: Props) {
   return (
-    <div className='center f-3 m-2'>
-      <div>{title}</div>
+    <div className='white-text center f-3 m-2'>
+      <div>{props.title}</div>
     </div>
   )
 }

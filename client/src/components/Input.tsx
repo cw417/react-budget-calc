@@ -45,7 +45,7 @@ export default function BudgetInput( props : Props ) {
   }
 
   return (
-    <div className='m-2'>
+    <div className='input-container m-2'>
       <label>{props.labelText}</label>
       <input 
         className='input'
@@ -55,7 +55,7 @@ export default function BudgetInput( props : Props ) {
         onKeyUp={handleKeyPress}
       />
       <input
-        className='input'
+        className='input ml-1'
         ref={input2Ref}
         type='text'
         placeholder={props.placeholder2}

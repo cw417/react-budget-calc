@@ -11,9 +11,12 @@ export default function ExpenseList({ expenses }: Props) {
     return (
       expenses.map((expense, index) => {
         return (
-          <div key={index}>
-            <span>{expense.description}</span>
-            <span>{expense.amount}</span>
+          <div key={index} className='expense'>
+            <span className='expense-info'>{expense.description}</span>
+            <span className='expense-info'>${expense.amount}</span>
+            <span className='expense-buttons'>
+              buttons
+            </span>
           </div>
         )
       })
@@ -21,7 +24,7 @@ export default function ExpenseList({ expenses }: Props) {
   }
 
   return (
-    <div className="container">
+    <div className='m-2'>
       <div>{renderExpenseList()}</div>
     </div>
   )
