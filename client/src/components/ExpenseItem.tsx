@@ -46,7 +46,7 @@ export default function ExpenseItem({ expense, updateExpense, deleteExpense }: P
   }
 
   return (
-    <div className='expense-container flex-row'>
+    <div className='expense-container'>
       <div className='expense' style={{display: editing ? 'none' : 'flex'}}>
         <span 
           className='expense-description'
@@ -67,18 +67,16 @@ export default function ExpenseItem({ expense, updateExpense, deleteExpense }: P
           ref={amountRef}
         />
       </div>
-      <span className='expense-edit flex-row'>
+      <div className='expense-edit-buttons' style={{display: editing ? 'flex' : 'none' }}>
         <button
-          className={`button expense-edit--button ${editing ? 'ml-1' : '' }`}
-          style={{opacity: editing ? '1' : '0'}}
+          className={`button`}
           onClick={handleUpdateExpense}
         ><FiCheck /></button>
         <button
-          className={`button expense-edit--button ${editing ? 'ml-1' : '' }`}
-          style={{opacity: editing ? '1' : '0'}}
+          className={`button ${editing ? 'ml-1' : '' }`}
           onClick={handleDeleteExpense}
         ><FiTrash /></button>
-      </span>
+      </div>
     </div>
   )
 }

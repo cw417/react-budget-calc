@@ -6,7 +6,7 @@ type Props = {
 
 export default function Header({ title }: Props) {
   return (
-    <div className='white-text center f-3 m-2'>
+    <div className='header'>
       <div>{title}</div>
     </div>
   )

@@ -25,6 +25,15 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Header */
+
+.header {
+  color: var(--main-font-color);
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 3rem;
+}
+
 /* Info Display */
 
 .info-display {
@@ -44,8 +53,10 @@ body {
 
 /* ExpenseItem */
 
-.expense-conatiner {
+.expense-container {
   width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .expense {
@@ -63,9 +74,10 @@ body {
   width: 25%;
 }
 
-.expense-edit {
-  width: 15%;
+.expense-edit-buttons {
   margin-left: auto;
+  display: flex;
+  flex-direction: row;
 }
 
 /** ExpenseItem -- Editing Mode **/
@@ -195,3 +207,66 @@ body {
 
 /* Responsive */
 
+@media screen and (max-width: 768px) {
+
+  .header {
+    font-size: 2.5rem;
+
+  }
+
+  .main-inputs-container {
+    margin-bottom: 0;
+  }
+
+  .info-display {
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+    padding: 2rem;
+  }
+
+  .info-display--income {
+    margin-left: 0;
+    text-align: none;
+  }
+
+  .input-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input {
+    margin: 0.5rem auto;
+  }
+
+  .button {
+    margin: 0.25rem;
+    padding: 0.25rem 0;
+  }
+
+  .container {
+    margin: 2rem var(--margin-outer);
+  }
+
+  .expense-container {
+    flex-direction: column;
+  }
+
+  .expense-edit-buttons {
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .expense-description-input, .expense-amount-input {
+    width: 100%;
+  }
+
+  .expense-list {
+    padding: 2rem;
+  }
+
+  .my-2 {
+    margin: 1rem auto;
+  }
+}

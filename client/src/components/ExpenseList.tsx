@@ -25,7 +25,7 @@ export default function ExpenseList({ expenses, updateExpense, deleteExpense }: 
   }
 
   return (
-    <div className='container'>
+    <div className='container expense-list'>
       <div>{renderExpenseList()}</div>
     </div>
   )
