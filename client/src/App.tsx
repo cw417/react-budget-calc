@@ -18,7 +18,7 @@ const APP_TITLE = 'Budget Calculator'
 function initialExpenses() {
   /**
    * Returns array of expenses to initialize the 'expenses' state.
-   * @return {Expnses[]}    Expense array.
+   * @return {Expense[]}    Expense array.
    */
   const initialExpense: Expense = { id: uuidv4(), description: "Initial", amount: 0 }
   return [initialExpense]
