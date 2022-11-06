@@ -23,7 +23,7 @@ function initialExpenses() {
    * @return {Expense[]}    Expense array.
    */
   const storedData: { income: number, expenses: Expense[] } | null = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)!);
-  return (storedData) ? storedData.expenses : [{ id: uuidv4(), description: "Initial", amount: 0 }];
+  return (storedData) ? storedData.expenses : [];
 }
 
 function initialIncome() {
@@ -39,7 +39,7 @@ function initialIncome() {
 function App() {
 
   const [ income, setIncome ] = useState(initialIncome());
-  const [ expenses, setExpenses ] = useState<Expense[]>(initialExpenses);
+  const [ expenses, setExpenses ] = useState<Expense[]>(initialExpenses());
 
   useEffect(() => {
     const data = {income: income, expenses: expenses}
@@ -71,7 +71,7 @@ function App() {
      * Balance is: income - total cost of expenses.
      * @return {number}    Available balance.
      */
-     return income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b);
+     return (expenses.length === 0) ? 0 : income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b);
   }
 
   function updateExpense(id: string, description: string, amount: string) {
