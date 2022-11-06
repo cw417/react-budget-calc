@@ -7,9 +7,10 @@ type Props = {
   buttonText: string | JSX.Element;
   placeholder1: string;
   placeholder2?: string;
+  styling?: string;
 }
 
-export default function BudgetInput({ numberOfInputs, updateFunction, labelText, buttonText, placeholder1, placeholder2 } : Props) {
+export default function BudgetInput({ numberOfInputs, updateFunction, labelText, buttonText, placeholder1, placeholder2, styling } : Props) {
   
   const input1Ref = useRef<HTMLInputElement | null>(null);
   const input2Ref = useRef<HTMLInputElement | null>(null);
@@ -45,7 +46,7 @@ export default function BudgetInput({ numberOfInputs, updateFunction, labelText,
   }
 
   return (
-    <div className='input-container m-2'>
+    <div className={`input-container my-2 ${styling}`}>
       <label>{labelText}</label>
       <input 
         className='input'

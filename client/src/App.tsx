@@ -101,19 +101,23 @@ function App() {
       <Header
         title={APP_TITLE}
       />
-      <Input
-        numberOfInputs={1}
-        buttonText={<FiPlus />}
-        placeholder1={"Income"}
-        updateFunction={updateIncome}
-      />
-      <Input
-        numberOfInputs={2}
-        buttonText={<FiPlus />}
-        placeholder1={"Description"}
-        placeholder2={"Amount"}
-        updateFunction={addExpense}
-      />
+      <div className='m-outer'>
+        <Input
+          numberOfInputs={1}
+          buttonText={<FiPlus />}
+          placeholder1={"Income"}
+          updateFunction={updateIncome}
+          styling={'flex-row-center'}
+        />
+        <Input
+          numberOfInputs={2}
+          buttonText={<FiPlus />}
+          placeholder1={"Description"}
+          placeholder2={"Amount"}
+          updateFunction={addExpense}
+          styling={'flex-row-center'}
+        />
+      </div>
       <InfoDisplay
         balance={getBalance()}
         income={income}
