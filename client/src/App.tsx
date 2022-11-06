@@ -123,6 +123,7 @@ function App() {
       <InfoDisplay
         balance={getBalance()}
         income={income}
+        updateIncome={updateIncome}
       />
       <ExpenseList
         expenses={expenses}
