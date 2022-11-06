@@ -90,7 +90,7 @@ function App() {
 
   function deleteExpense(id: string) {
     /**
-     * Delete an expense from the expenses array based on UUID.
+     * Delete an expense from the expenses array based on id.
      * @param {string} id    UUID of the expense to delete.
      */
     setExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
