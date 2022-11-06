@@ -5,8 +5,10 @@ import ExpenseList from './components/ExpenseList';
 import { FiPlus } from 'react-icons/fi';
 import InfoDisplay from './components/InfoDisplay';
 import Input from './components/Input'
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Expense {
+  id: string;
   description: string;
   amount: number
 }
@@ -18,7 +20,7 @@ function initialExpenses() {
    * Returns array of expenses to initialize the 'expenses' state.
    * @return {Expnses[]}    Expense array.
    */
-  const initialExpense: Expense = { description: "Initial", amount: 0 }
+  const initialExpense: Expense = { id: uuidv4(), description: "Initial", amount: 0 }
   return [initialExpense]
 }
 
@@ -33,7 +35,7 @@ function App() {
      * @param {string} description    Description of the expense.
      * @param {string} amount         Amount of the expense.
      */
-    const newExpense: Expense =  { description: description, amount: parseFloat(amount)}
+    const newExpense: Expense =  { id: uuidv4(), description: description, amount: parseFloat(amount)}
     setExpenses(prevExpenses => [...prevExpenses, newExpense])
   }
 
@@ -53,6 +55,20 @@ function App() {
      * @return {number}    Available balance.
      */
      return income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b);
+  }
+
+  function updateExpense(id: string, description: string, amount: string) {
+    /**
+     * Update expense information based on id.
+     * @param {string} id             UUID of expense to update.
+     * @param {string} description    Description to set.
+     * @param {string} amount         Amount to set.
+     */
+    const newExpense: Expense = { id: id, description: description, amount: parseFloat(amount) };
+    let newExpenses: Expense[] = [...expenses];
+    const index: number = newExpenses.findIndex(expense => expense.id === id);
+    newExpenses[index] = newExpense;
+    setExpenses(newExpenses);
   }
 
   return (
@@ -79,6 +95,7 @@ function App() {
       />
       <ExpenseList
         expenses={expenses}
+        updateExpense={updateExpense}
       />
     </div>
   );

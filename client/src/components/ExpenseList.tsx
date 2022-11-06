@@ -1,22 +1,24 @@
-import React from 'react'
 import { Expense } from '../App';
 import { FiEdit } from 'react-icons/fi';
 
 type Props = {
-  expenses: Expense[]
+  expenses: Expense[];
+  updateExpense: Function;
 }
 
-export default function ExpenseList(props: Props) {
+export default function ExpenseList({ expenses, updateExpense }: Props) {
 
   function renderExpenseList() {
     return (
-      props.expenses.map((expense, index) => {
+      expenses.map((expense, index) => {
         return (
           <div key={index} className='expense'>
             <span className='expense-description'>{expense.description}</span>
             <span className='expense-amount'>${expense.amount}</span>
             <span className='expense-buttons'>
-              <button className='button'><FiEdit /></button>
+              <button
+              className='button'
+              ><FiEdit /></button>
             </span>
           </div>
         )
