@@ -5,16 +5,16 @@ type Props = {
   income: number
 }
 
-export default function InfoDisplay({ balance, income }: Props) {
+export default function InfoDisplay(props: Props) {
   return (
     <div className='container'>
       <div>
         <label>Income:</label>
-        <span>{income}</span>
+        <span>{props.income}</span>
       </div>
       <div>
         <label>Balance:</label>
-        <span>{balance}</span>
+        <span>{props.balance}</span>
       </div>
     </div>
   )

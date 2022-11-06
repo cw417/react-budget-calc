@@ -9,7 +9,7 @@ type Props = {
   placeholder2?: string;
 }
 
-export default function BudgetInput( props : Props ) {
+export default function BudgetInput(props : Props) {
   
   const input1Ref = useRef<HTMLInputElement | null>(null);
   const input2Ref = useRef<HTMLInputElement | null>(null);

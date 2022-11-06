@@ -6,11 +6,11 @@ type Props = {
   expenses: Expense[]
 }
 
-export default function ExpenseList({ expenses }: Props) {
+export default function ExpenseList(props: Props) {
 
   function renderExpenseList() {
     return (
-      expenses.map((expense, index) => {
+      props.expenses.map((expense, index) => {
         return (
           <div key={index} className='expense'>
             <span className='expense-description'>{expense.description}</span>
