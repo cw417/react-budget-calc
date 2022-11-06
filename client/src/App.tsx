@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import ExpenseList from './components/ExpenseList';
@@ -14,20 +14,37 @@ export interface Expense {
 }
 
 const APP_TITLE = 'Budget Calculator'
+const LOCAL_STORAGE_KEY = 'budgetApp.data';
 
 function initialExpenses() {
   /**
    * Returns array of expenses to initialize the 'expenses' state.
+   * If local storage has not been set, returns an array with placeholder expense.
    * @return {Expense[]}    Expense array.
    */
-  const initialExpense: Expense = { id: uuidv4(), description: "Initial", amount: 0 }
-  return [initialExpense]
+  const storedData: { income: number, expenses: Expense[] } | null = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)!);
+  return (storedData) ? storedData.expenses : [{ id: uuidv4(), description: "Initial", amount: 0 }];
+}
+
+function initialIncome() {
+  /**
+   * Returns income to initialize the 'income' state.
+   * If local storage has not been set, returns 0.
+   * @return {number}    Income.
+   */
+  const storedData: { income: number, expenses: Expense[] } | null = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)!);
+  return (storedData) ? storedData.income : 0;
 }
 
 function App() {
 
-  const [ expenses, setExpenses ] = useState<Expense[]>(initialExpenses());
-  const [ income, setIncome ] = useState(0);
+  const [ income, setIncome ] = useState(initialIncome());
+  const [ expenses, setExpenses ] = useState<Expense[]>(initialExpenses);
+
+  useEffect(() => {
+    const data = {income: income, expenses: expenses}
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data))
+  }, [expenses, income])
 
   function addExpense(description: string, amount: string) {
     /**
