@@ -1,9 +1,9 @@
 :root {
   --button-blue: #3498db;
   --button-blue-hover: #2385C7;
-  --main-font-color: #fff;
+  --main-font-color: beige;
   --background-color:#2385C7;
-  --background-color-secondary: #dfe6e9; 
+  --background-color-secondary: beige; 
   --background-color-secondary-hover: #65b4fa;
   --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -16,7 +16,6 @@ body {
 
 /* Input */
 
-
 .input-container {
   display: flex;
   flex-direction: row;
@@ -24,6 +23,7 @@ body {
 }
 
 .input {
+  background-color: var(--background-color-secondary);
   padding: 0.5rem 1rem;
   border-radius: 15px;
   box-shadow: var(--shadow);
@@ -53,18 +53,18 @@ body {
 /* Expense List */
 
 .expense {
-  background-image: url(../images/paper.png);
   display: flex;
   flex-direction: row;
-  margin: 1rem auto;
-  padding: 2rem;
-  border-radius: 15px;
-  width: 80%;
   font-size: 2rem;
+  width: 100%;
 }
 
-.expense-info {
-  margin: 0 2rem;
+.expense-description {
+  width: 60%;
+}
+
+.expense-amount {
+  width: 15%;
 }
 
 .expense-buttons {
@@ -108,5 +108,5 @@ body {
 }
 
 .white-text {
-  color: #fff;
+  color: var(--main-font-color);
 }
