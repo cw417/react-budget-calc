@@ -15,6 +15,16 @@ body {
   background-color: var(--background-color);
 }
 
+/* App */
+
+.main-inputs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 /* Info Display */
 
 .info-display {

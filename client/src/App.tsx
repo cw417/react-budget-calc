@@ -101,25 +101,25 @@ function App() {
       <Header
         title={APP_TITLE}
       />
-      <div className='m-outer'>
+
+      <div className='main-inputs-container'>
         <div style={{display: (income === 0) ? 'flex' : 'none'}}>
           <Input
             numberOfInputs={1}
             buttonText={<FiPlus />}
             placeholder1={"Income"}
             updateFunction={updateIncome}
-            styling={'flex-row-center'}
           />
+        </div>
           <Input
             numberOfInputs={2}
             buttonText={<FiPlus />}
             placeholder1={"Description"}
             placeholder2={"Amount"}
             updateFunction={addExpense}
-            styling={'flex-row-center'}
           />
-        </div>
       </div>
+
       <InfoDisplay
         balance={getBalance()}
         income={income}
