@@ -56,25 +56,54 @@ body {
   border-radius: 0px;
 }
 
-/* Expense List */
+/* ExpenseItem */
+
+.expense-conatiner {
+  width: 100%;
+}
 
 .expense {
   display: flex;
   flex-direction: row;
   font-size: 2rem;
-  width: 100%;
+  width: 100%;;
 }
 
 .expense-description {
-  width: 60%;
+  width: 80%;
 }
 
 .expense-amount {
-  width: 15%;
+  width: 25%;
 }
 
-.expense-buttons {
+.expense-edit {
+  width: 15%;
   margin-left: auto;
+}
+
+/** ExpenseItem -- Editing Mode **/
+
+.expense--editing {
+  width: 100%;
+}
+
+.expense-description-input, .expense-amount-input {
+  font-size: 2rem;
+  border-width: none;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+.expense-description-input:focus, .expense-amount-input {
+  font-size: 2rem;
+}
+.expense-description-input {
+  width: 60%;
+}
+
+.expense-amount-input {
+  width: 25%;
+  padding-left: 5%;
 }
 
 /* Utility */
@@ -85,7 +114,7 @@ body {
 
 .container {
   margin: 2rem;
-  padding: 2rem;
+  padding: 4rem;
   box-shadow: var(--shadow);
   background-color: var(--background-color-secondary);
   border-radius: 15px;
@@ -114,6 +143,15 @@ body {
   margin-left: 1rem;
 }
 
+.ml-2 {
+  margin: auto;
+}
+
 .white-text {
+  color: var(--main-font-color);
+}
+
+.background-same {
+  background-color: var(--background-color-secondary);
   color: var(--main-font-color);
 }
