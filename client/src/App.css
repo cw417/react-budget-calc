@@ -1,9 +1,13 @@
 :root {
   --button-blue: #3498db;
   --button-blue-hover: #2385C7;
-  --main-font-color: beige;
-  --background-color:#2385C7;
-  --background-color-secondary: beige; 
+  --main-font-color: #fff;
+/*   --background-color:#2385C7; */
+/*   --background-color-secondary: #2385C7;  */
+/*   --background-color: #9ec6c2; 
+  --background-color-secondary: #9eb6c6;  */
+  --background-color: #9eb6c6; 
+  --background-color-secondary: #5F9EA0; 
   --background-color-secondary-hover: #65b4fa;
   --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -23,18 +27,20 @@ body {
 }
 
 .input {
-  background-color: var(--background-color-secondary);
-  padding: 0.5rem 1rem;
+  background-color: #fff;
+  padding: 0.75rem 1.25rem;
   border-radius: 15px;
   box-shadow: var(--shadow);
   border: none;
+  font-size: 1.5rem;
 }
 
 .button {
-  width: 3rem;
-  height: 2.25rem;
-  font-size: 1.25rem;
-  padding-top: 0.25rem; /* this keeps the image centered */
+  width: 3.5rem;
+  margin: 0.25rem 0;
+  height: auto;
+  font-size: 1.75rem;
+  padding-top: 0.5rem; /* this keeps the image centered */
   cursor: pointer;
   border-radius: 7px;
   background-color: var(--button-blue);
@@ -83,6 +89,7 @@ body {
   box-shadow: var(--shadow);
   background-color: var(--background-color-secondary);
   border-radius: 15px;
+  color: var(--main-font-color);
 }
 
 .f-3 {
