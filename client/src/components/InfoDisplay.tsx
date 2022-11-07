@@ -25,7 +25,10 @@ export default function InfoDisplay({ balance, income, updateIncome }: Props) {
   }
 
   useEffect(() => {
-    if (editing) amountRef.current!.value = income.toString();
+    if (editing) {
+      amountRef.current!.focus();
+      amountRef.current!.value = income.toString();
+    }
     console.log(editing);
   }, [editing, income])
 
@@ -40,19 +43,20 @@ export default function InfoDisplay({ balance, income, updateIncome }: Props) {
   }
 
   return (
-    <div className='info-display container'>
+    <div className='info-display container center'>
       <div>
         <label>Balance:</label>
-        <span>{` $${balance}`}</span>
+        <div>{`$${balance}`}</div>
       </div>
       <div className='info-display--income'>
-        <span
-          style={{display: editing ? 'none' : 'inline'}}
+        <label>Income:</label>
+        <div
+          style={{display: editing ? 'none' : 'block'}}
           onClick={toggleEditing}
-        >{`Income: $${income}`}</span>
+        >{`$${income}`}</div>
         <input
-          style={{display: editing ? 'inline' : 'none'}}
-          className='expense-amount-input background-same'
+          style={{display: editing ? 'block' : 'none'}}
+          className='info-display--income-input background-same'
           ref={amountRef}
           onKeyUp={handleKeyPress}
         />

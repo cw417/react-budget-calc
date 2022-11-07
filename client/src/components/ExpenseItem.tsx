@@ -25,6 +25,7 @@ export default function ExpenseItem({ expense, updateExpense, deleteExpense }: P
     if (editing) {
       descriptionRef.current!.value = expense.description;
       amountRef.current!.value = expense.amount.toString();
+      amountRef.current!.focus();
     }
   }, [editing, expense.description, expense.amount])
 
@@ -69,11 +70,11 @@ export default function ExpenseItem({ expense, updateExpense, deleteExpense }: P
       </div>
       <div className='expense-edit-buttons' style={{display: editing ? 'flex' : 'none' }}>
         <button
-          className={`button`}
+          className={`button edit-button`}
           onClick={handleUpdateExpense}
         ><FiCheck /></button>
         <button
-          className={`button ${editing ? 'ml-1' : '' }`}
+          className={`button edit-button ${editing ? 'ml-1' : '' }`}
           onClick={handleDeleteExpense}
         ><FiTrash /></button>
       </div>
