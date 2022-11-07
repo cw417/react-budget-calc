@@ -29,6 +29,16 @@ export default function InfoDisplay({ balance, income, updateIncome }: Props) {
     console.log(editing);
   }, [editing, income])
 
+  function handleKeyPress(event: React.KeyboardEvent<HTMLElement>) {
+    /**
+     * Watches for 'Enter' keypress.
+     * @param event  Keypress event watching for 'Enter' key.
+     */
+    if (event.key === 'Enter') {
+      handleUpdateIncome();
+    }
+  }
+
   return (
     <div className='info-display container'>
       <div>
@@ -44,6 +54,7 @@ export default function InfoDisplay({ balance, income, updateIncome }: Props) {
           style={{display: editing ? 'inline' : 'none'}}
           className='expense-amount-input background-same'
           ref={amountRef}
+          onKeyUp={handleKeyPress}
         />
         <button 
           onClick={handleUpdateIncome}
