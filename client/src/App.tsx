@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import './App.css';
 import Header from './components/Header';
 import ExpenseList from './components/ExpenseList';
@@ -38,11 +38,14 @@ function initialIncome() {
 
 function App() {
 
-  const [ income, setIncome ] = useState(initialIncome());
-  const [ expenses, setExpenses ] = useState<Expense[]>(initialExpenses());
+  const [income, setIncome]: [number, Dispatch<SetStateAction<number>>] = useState(initialIncome());
+  const [expenses, setExpenses] = useState<Expense[]>(initialExpenses());
 
   useEffect(() => {
-    const data = {income: income, expenses: expenses}
+    /**
+     * Update local storage if expenses or income change.
+     */
+    const data = { income: income, expenses: expenses }
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data))
   }, [expenses, income])
 
@@ -63,15 +66,6 @@ function App() {
      */
 
     setIncome(parseFloat(amount));
-  }
-
-  function getBalance() {
-    /**
-     * Gets the current available balance.
-     * Balance is: income - total cost of expenses.
-     * @return {number}    Available balance.
-     */
-     return (expenses.length === 0) ? 0 : income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b);
   }
 
   function updateExpense(id: string, description: string, amount: string) {
@@ -121,7 +115,7 @@ function App() {
       </div>
 
       <InfoDisplay
-        balance={getBalance()}
+        balance={(expenses.length === 0) ? income : income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b)}
         income={income}
         updateIncome={updateIncome}
       />
