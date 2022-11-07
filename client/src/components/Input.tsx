@@ -33,6 +33,7 @@ export default function BudgetInput({ numberOfInputs, updateFunction, labelText,
     }
     input1Ref.current!.value = null!;
     input2Ref.current!.value = null!;
+    input1Ref.current!.focus();
   }
 
   function handleKeyPress(event: React.KeyboardEvent<HTMLElement>) {
