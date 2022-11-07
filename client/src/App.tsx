@@ -55,6 +55,7 @@ function App() {
      * @param {string} description    Description of the expense.
      * @param {string} amount         Amount of the expense.
      */
+    if (!/^\d+$/.test(amount)) return;
     const newExpense: Expense =  { id: uuidv4(), description: description, amount: parseFloat(amount)}
     setExpenses(prevExpenses => [...prevExpenses, newExpense])
   }
@@ -64,7 +65,7 @@ function App() {
      * Sets 'income' state to given amount.
      * @param {string} amount    Amount to set income to.
      */
-
+    if (!/^\d+$/.test(amount)) return;
     setIncome(parseFloat(amount));
   }
 
@@ -75,6 +76,7 @@ function App() {
      * @param {string} description    Description to set.
      * @param {string} amount         Amount to set.
      */
+    if (!/^\d+$/.test(amount)) return;
     const newExpense: Expense = { id: id, description: description, amount: parseFloat(amount) };
     let newExpenses: Expense[] = [...expenses];
     const index: number = newExpenses.findIndex(expense => expense.id === id);
