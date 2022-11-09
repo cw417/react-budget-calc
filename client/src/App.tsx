@@ -1,11 +1,12 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { FiPlus } from 'react-icons/fi';
 import './App.css';
 import Header from './components/Header';
 import ExpenseList from './components/ExpenseList';
-import { FiPlus } from 'react-icons/fi';
 import InfoDisplay from './components/InfoDisplay';
 import Input from './components/Input'
-import { v4 as uuidv4 } from 'uuid';
+import Sidebar from './components/Sidebar';
 
 export interface Expense {
   id: string;
@@ -93,39 +94,48 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='flex-col'>
       <Header
         title={APP_TITLE}
       />
 
-      <div className='main-inputs-container'>
-        <div style={{display: (income === 0) ? 'flex' : 'none'}}>
-          <Input
-            numberOfInputs={1}
-            buttonText={<FiPlus />}
-            placeholder1={"Income"}
-            updateFunction={updateIncome}
+      <div className='flex-row'>
+        <Sidebar
+          expenses={expenses}
+        />
+
+        <div>
+          <div className='main-inputs-container'>
+            <div style={{display: (income === 0) ? 'flex' : 'none'}}>
+              <Input
+                numberOfInputs={1}
+                buttonText={<FiPlus />}
+                placeholder1={"Income"}
+                updateFunction={updateIncome}
+              />
+            </div>
+            <Input
+              numberOfInputs={2}
+              buttonText={<FiPlus />}
+              placeholder1={"Description"}
+              placeholder2={"Amount"}
+              updateFunction={addExpense}
+            />
+          </div>
+          <InfoDisplay
+            balance={(expenses.length === 0) ? income : income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b)}
+            income={income}
+            updateIncome={updateIncome}
+          />
+          <ExpenseList
+            expenses={expenses}
+            updateExpense={updateExpense}
+            deleteExpense={deleteExpense}
           />
         </div>
-          <Input
-            numberOfInputs={2}
-            buttonText={<FiPlus />}
-            placeholder1={"Description"}
-            placeholder2={"Amount"}
-            updateFunction={addExpense}
-          />
+
       </div>
 
-      <InfoDisplay
-        balance={(expenses.length === 0) ? income : income - (expenses.map(expense => expense.amount)).reduce((a,b) => a + b)}
-        income={income}
-        updateIncome={updateIncome}
-      />
-      <ExpenseList
-        expenses={expenses}
-        updateExpense={updateExpense}
-        deleteExpense={deleteExpense}
-      />
     </div>
   );
 }

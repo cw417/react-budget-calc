@@ -161,6 +161,12 @@ body {
   border-radius: 0px;
 }
 
+/* Sidebar */
+
+.sidebar {
+  height: 60vh;
+}
+
 /* Utility */
 
 .center {
