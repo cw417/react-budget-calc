@@ -7,11 +7,13 @@ import ExpenseList from './components/ExpenseList';
 import InfoDisplay from './components/InfoDisplay';
 import Input from './components/Input'
 import Sidebar from './components/Sidebar';
+import InputDate from './components/InputDate';
 
 export interface Expense {
   id: string;
   description: string;
-  amount: number
+  amount: number;
+  date: string;
 }
 
 const APP_TITLE = 'Budget Calculator'
@@ -50,14 +52,15 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data))
   }, [expenses, income])
 
-  function addExpense(description: string, amount: string) {
+  function addExpense(description: string, amount: string, date: string) {
     /**
      * Add expense to the 'expenses' array.
      * @param {string} description    Description of the expense.
      * @param {string} amount         Amount of the expense.
      */
     if (!/^\d+$/.test(amount)) return;
-    const newExpense: Expense =  { id: uuidv4(), description: description, amount: parseFloat(amount)}
+    
+    const newExpense: Expense =  { id: uuidv4(), description: description, amount: parseFloat(amount), date: date}
     setExpenses(prevExpenses => [...prevExpenses, newExpense])
   }
 
